@@ -28,7 +28,8 @@ Starting off with an incomplete board (empty spaces represented by zeroes),
  1.  Find an empty/ unassigned space (marked with 0)
  2.  Attempt to place digits from 1-9 in that space
  3.  Check if that digit is valid in that space (i.e, it should not recur in that column, row or 3×3 subgrid)  
- 4. a. If that digit is valid, we recursively try to solve the entire board using steps 1-3  
+ 4. Next,  
+    a. If that digit is valid, we recursively try to solve the entire board using steps 1-3  
     b. Else, we reset that space we just filled with the next digit and return to step 3  
  5. Once the board has been fully filled (no unassigned/ empty space), we have found our solution!  
    
