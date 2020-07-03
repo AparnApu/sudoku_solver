@@ -21,13 +21,13 @@ def create_board():
     
     pref = input('Enter 0 for built in puzzle or 1 for puzzle to be read from default text file > ')
     
-    if(pref == '0'):
+    if pref == '0':
         sud_string = "000260701 680070090 190004500 820100040 004602900 050003028 009300074 040050036 703018000"
     
-    elif(pref == '1'):
+    elif pref == '1':
         f = open(r'.\puzzles\default_board2.txt', 'r')
     
-        sud_string= f.read()
+        sud_string = f.read()
     
         f.close()
     
@@ -36,11 +36,11 @@ def create_board():
         sys.exit()
         
     
-    board = [[0 for i in range(9)] for j in range(9)]
+    board = [[0] * 9 for j in range(9)]
     
     sud_string = "".join(sud_string.split())
     
-    slice_loc = np.arange(0,len(sud_string)+1,9)
+    slice_loc = np.arange(0, len(sud_string) + 1, 9)
     
     for i in range(9):
         row = sud_string[slice_loc[i]:slice_loc[i+1]]
@@ -81,12 +81,12 @@ def print_board(board):
         
             print(board[i][j], end = ' ')
             
-            if(j ==  2 or j == 5):
-                 print('|', end = " ")
+            if j == 2 or j == 5:
+                 print('|', end=" ")
             
-        if(i == 2 or i == 5):
+        if i == 2 or i == 5:
             print()
-            print('-'*21, end = " ")
+            print('-' * 21, end=" ")
         
         print()
         
@@ -108,12 +108,10 @@ def find_empty(board):
     '''
     
     for i in range(9):
-        
         for j in range(9):
-            
-            if(board[i][j] == 0):
-                return(i, j)       # row, col of empty location
-            
+            if board[i][j] == 0:
+                return (i, j)       # row, col of empty location
+
     return None
 
 ###############################################################
@@ -135,23 +133,19 @@ def if_valid(board, num, pos):
     
     row, col = pos               # row, col are location of unassigned cell
     
-    for i in range(9):
-        if(board[row][i] == num):
-            return False
+    if any(board[row][i] == num for i in range(9)):
+        return False
     
-    for i in range(9):
-        if(board[i][col] == num):
-            return False
+    if any(board[i][col] == num for i in range(9)):
+        return False
         
     row_start = (row//3) * 3       # starting location of the 3*3 subgrid to which unassigned cell belongs to
     col_start = (col//3) * 3
     
-    for i in range(3):
-        for j in range(3):
-            if(board[row_start + i][col_start + j] == num):
-                return False
-    
-    return True
+    return all(
+        board[row_start + i][col_start + j] != num
+        for i in range(3) for j in range(3)
+    )
 
 ###############################################################
 # function that solves the sudoku
@@ -182,10 +176,10 @@ def solve_sudoku(board):
         row, col = empty
         
     for i in range(1, 10):
-        if(if_valid(board, i, (row, col))):
+        if if_valid(board, i, (row, col)):
             board[row][col] = i
             
-            if(solve_sudoku(board)):
+            if solve_sudoku(board):
                 return True
             
             board[row][col] = 0

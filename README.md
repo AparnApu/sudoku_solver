@@ -1,7 +1,6 @@
-# sudoku_solver
+# Sudoku Solver
 
 ## Table of Contents
-
 - [Introduction](#Introduction)
 - [Motivation](#Motivation)
 - [Working](#Working)
@@ -13,13 +12,10 @@
 This program solves a sudoku board using the backtracking algorithm.
 
 ## Motivation
-Sudoku has a been a puzzle I have seen and solved a lot, but only manually - in school newspapers and puzzle books. 
-So the idea of getting the computer to solve it for me was very exciting.
-Working with recursion is always very frustrating - but I enjoyed writing this code beacuse the result was very satisfying. I could solve something that took me hours in a couple of seconds now!
+Sudoku has a been a puzzle I have seen and solved a lot, but only manually - in school newspapers and puzzle books. So the idea of getting the computer to solve it for me was very exciting. Working with recursion is always very frustrating - but I enjoyed writing this code beacuse the result was very satisfying. I could solve something that took me hours in a couple of seconds now!
 
 ## Working
-This code uses the backtracking algorithm to solve the sudoku board recursively.
-Backtracking is simply returning to the previous step or solution as soon as we find that current solution cannot be used to solve the problem.
+This code uses the backtracking algorithm to solve the sudoku board recursively. Backtracking is simply returning to the previous step or solution as soon as we find that current solution cannot be used to solve the problem.
   
 **The basic algorithm is as follows:**  
   
@@ -35,7 +31,7 @@ Starting off with an incomplete board (empty spaces represented by zeroes),
    
   
   
- **To run the code,**    
+ **To run the code:**    
    
   1. You can either input your own sudoku board as a string.   
     
@@ -45,20 +41,17 @@ Starting off with an incomplete board (empty spaces represented by zeroes),
   2. You can also input the unsolved sudoku board as a textfile.   
      Two default text files have been provided under the puzzled folder (default_board1 and default_board2).  
      
-The code asks you which one you would rather prefer, and based on your input, it will run on the default inputs I have built in.  
-To change the inputs, these are the code snippets to modify (lines 24 - 32):    
+The code asks you which one you would rather prefer, and based on your input, it will run on the default inputs I have built in. To change the inputs, these are the code snippets to modify (lines 24 - 32):    
 
 ### Code snippet to modify:
 
 ```
-    if(pref == '0'):
+    if pref == '0':
         sud_string = "000260701 680070090 190004500 820100040 004602900 050003028 009300074 040050036 703018000"
     
-    elif(pref == '1'):
+    elif pref == '1':
         f = open(r'.\puzzles\default_board2.txt', 'r')
-    
-        sud_string= f.read()
-    
+        sud_string = f.read()
         f.close()
     
     else:
@@ -67,6 +60,4 @@ To change the inputs, these are the code snippets to modify (lines 24 - 32):
 ```
     
  ## Contributions
-Open to contributions!
-
-Fork the repo, edit it and commit your change.
+Open to contributions! Fork the repo, edit it and commit your change.
