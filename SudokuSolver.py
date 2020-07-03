@@ -107,8 +107,10 @@ def find_empty(board):
                     none
     '''
     
-    if any(board[i][j] == 0 for i in range(9) for j in range(9)):
-        return (i, j)       # row, col of empty location
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0:
+                return (i, j)       # row, col of empty location
 
     return None
 
